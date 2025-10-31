@@ -38,6 +38,7 @@ public class PlayerAttack : MonoBehaviour {
 	}
 	
 	private void Attack(){
+		Debug.Log("1031.attack.1.");
 		float distance=Vector3.Distance(target.transform.position,transform .position);
 		
 		Vector3 dir=(target.transform.position - transform .position);
@@ -46,6 +47,7 @@ public class PlayerAttack : MonoBehaviour {
 
 		if(distance<4){
 			if(direction>0){
+				Debug.Log("1031.attack.3.");
 		        EnemyHealth eh=(EnemyHealth)target.GetComponent("EnemyHealth");
 		        eh.AdddjustcurHealth(-30);
 			}

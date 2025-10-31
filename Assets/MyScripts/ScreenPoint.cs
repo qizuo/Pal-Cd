@@ -117,9 +117,10 @@ public class ScreenPoint: MonoBehaviour {
 		GUI.skin=mySkin;
 		Vector3 screenPos = GetComponent<Camera>().WorldToScreenPoint(position.transform.position);
 		float distance=Vector3.Distance(position.transform.position,Player.position);
+		// Debug.Log("1031.disPlayTask."+distance+" "+position.name+" "+Target.GetComponentInChildren<CharacterController>().task+" "+y);
 		if(distance<12f)
 		{
-		    if(GUI.Button(new Rect(screenPos.x - x,Screen.height-screenPos.y - 40,30,40),"","��̾��"))
+		    if(GUI.Button(new Rect(screenPos.x - x,Screen.height-screenPos.y - 40,30,40),"","按钮1"))
 		    {
 			    Target.GetComponentInChildren<CharacterController>().task = y;
 				task = 0;

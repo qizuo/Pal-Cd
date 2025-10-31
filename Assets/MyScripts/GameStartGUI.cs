@@ -31,6 +31,7 @@ public class GameStartGUI : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		Debug.Log("1031.start.start.");
 		gameState = STATE_MAINMENU;
 			
 		GetComponent<AudioSource>().PlayOneShot(music1);

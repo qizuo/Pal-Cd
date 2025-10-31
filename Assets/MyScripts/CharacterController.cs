@@ -250,7 +250,7 @@ public class CharacterController : MonoBehaviour
 		{
 			_displayTaskWindow = !_displayTaskWindow;
 		}
-		
+		// Debug.Log("1031.character.ongui.");
 		switch(task)
 		{
 		case 1:
