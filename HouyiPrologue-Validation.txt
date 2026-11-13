@@ -1,0 +1,7 @@
+PASS: intro, interaction range, elder dialogue, three PHYSICAL target hits, death and checkpoint retry, three PHYSICAL beast kills, rescue dialogue, altar, exactly nine suns, weak arrow rejected, full-charge PHYSICAL seal hit, ending. No stage skips.
+Windows player build: Succeeded errors=0
+World renders visually checked. Hidden-window screen captures were black; HUD layout has not been visually verified in a visible window.
+
+Touch controls update:
+PASS: independent 3-finger movement/look/fire; button drag-out release; canceled and missing finger cleanup; duplicate fire touch blocked; interaction and pause do not fire; deadzone; actual CharacterController movement, camera yaw, charged arrow release and cancellation; existing-scene auto setup; NPC interaction gate. Mobile device hardware not tested.
+Regression: PASS: intro, interaction range, elder dialogue, three PHYSICAL target hits, death and checkpoint retry, three PHYSICAL beast kills, rescue dialogue, altar, exactly nine suns, weak arrow rejected, full-charge PHYSICAL seal hit, ending. No stage skips.

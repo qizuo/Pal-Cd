@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/HouyiPrologue/Scenes/Houyi_Prologue.unity
+    guid: f2d320bc6ffe16146a4a300eedd1293a
+  - enabled: 0
+    path: Assets/Scenes/StartScene.unity
+    guid: 09946e8a53bacd049a418050d464873f
+  - enabled: 0
+    path: Assets/Scenes/scene1.unity
+    guid: ccd6db2abdd62ef48b963d7936736e49
+  m_configObjects: {}

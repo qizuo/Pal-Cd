@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">TileMatch</string>
+  <string name="game_view_content_description">Game view</string>
+
+  <string name="notify_title">💖As peças sentem sua falta!🤩</string>
+  <string name="notify_desc_1">Combine as peças! Relaxe com um toque.</string>
+  <string name="notify_desc_2">Suas peças sentem sua falta. Hora de reencontro!</string>
+  <string name="notify_desc_3">A alegria simples do jogo! Reclame a sua agora!</string>
+  <string name="notify_desc_4">Pronto para treinar o cérebro? Venha jogar!</string>
+  <string name="notify_desc_5">Engrena seu cérebro!</string>
+  <string name="notify_desc_6">Prepare-se para explorar um novo país!</string>
+  <string name="notify_desc_7">Próximo país: Desbloqueio iminente!</string>
+  <string name="notify_desc_8">Seu país em seguida? Toque para ver!</string>
+  <string name="notify_desc_9">Novidades em quantidade! Experimente!</string>
+  <string name="notify_desc_10">Novidades desbloqueadas! Mergulhe já!</string>
+  <string name="notify_desc_11">Retome sua aventura! Descubra um novo país!</string>
+  <string name="notify_desc_12">Continue viajando! Descubra destinos inexplorados!</string>
+
+  <string name="notify_channel_id" translatable="false">jc_tilematch_notify_id</string>
+  <string name="notify_channel_name" translatable="false">jc_tilematch_notify_name</string>
+
+</resources>

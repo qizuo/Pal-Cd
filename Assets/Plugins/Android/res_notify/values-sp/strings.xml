@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">TileMatch</string>
+  <string name="game_view_content_description">Game view</string>
+
+  <string name="notify_title">💖¡Las fichas te extrañan!🤩</string>
+  <string name="notify_desc_1">¡Combina fichas! Relájate con un toque.</string>
+  <string name="notify_desc_2">Tus fichas te extrañan. ¡Hora de reunirse!</string>
+  <string name="notify_desc_3">¡Diversión fácil con fichas! Reclama la tuya ya.</string>
+  <string name="notify_desc_4">¿Listo para entrenar tu mente? ¡Ven a jugar!</string>
+  <string name="notify_desc_5">¡Engrana tu cerebro!</string>
+  <string name="notify_desc_6">¡Prepárate para explorar un nuevo país!</string>
+  <string name="notify_desc_7">¡Próximo país: Desbloqueo inminente!</string>
+  <string name="notify_desc_8">¿Tu país es el próximo? ¡Toca y descubre!</string>
+  <string name="notify_desc_9">¡Un montón de novedades! ¡Pruébalas!</string>
+  <string name="notify_desc_10">¡Funciones nuevas activadas! ¡Métete ya!</string>
+  <string name="notify_desc_11">¡Reanuda tu aventura! ¡Descubre un nuevo país!</string>
+  <string name="notify_desc_12">¡Sigue viajando! ¡Descubre destinos vírgenes!</string>
+
+  <string name="notify_channel_id" translatable="false">jc_tilematch_notify_id</string>
+  <string name="notify_channel_name" translatable="false">jc_tilematch_notify_name</string>
+
+</resources>

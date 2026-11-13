@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">TileMatch</string>
+  <string name="game_view_content_description">Game view</string>
+
+  <string name="notify_title">💖Tiles love and miss you!🤩</string>
+  <string name="notify_desc_1">Match those tiles. Relaxation’s just a tap away.</string>
+  <string name="notify_desc_2">Your tiles miss you. Time to reunite.</string>
+  <string name="notify_desc_3">Tile matching’s easy joy. Come claim yours now.</string>
+  <string name="notify_desc_4">Ready to train your brain? Come and play!</string>
+  <string name="notify_desc_5">Get your brain in gear!</string>
+  <string name="notify_desc_6">Get ready to explore a new country!</string>
+  <string name="notify_desc_7">Next country’s views: Unlock imminent!</string>
+  <string name="notify_desc_8">Your country next? Tap to find out!</string>
+  <string name="notify_desc_9">New features galore! Come try them!</string>
+  <string name="notify_desc_10">Fresh features unlocked! Dive in now!</string>
+  <string name="notify_desc_11">Resume your adventure! Discover new country!</string>
+  <string name="notify_desc_12">Keep traveling! Uncover fresh destinations!</string>
+
+  <string name="notify_channel_id" translatable="false">jc_tilematch_notify_id</string>
+  <string name="notify_channel_name" translatable="false">jc_tilematch_notify_name</string>
+
+</resources>

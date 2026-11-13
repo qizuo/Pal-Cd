@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">TileMatch</string>
+  <string name="game_view_content_description">Game view</string>
+
+  <string name="notify_title">💖타일들이 보고 싶어해요!🤩</string>
+  <string name="notify_desc_1">타일 맞추기! 탭 한번으로 휴식 시작</string>
+  <string name="notify_desc_2">타일들이 그리워해요. 다시 만날 시간!</string>
+  <string name="notify_desc_3">타일 맞추기의 쉬운 즐거움! 지금 당신 차례입니다!</string>
+  <string name="notify_desc_4">두뇌 훈련 준비됐어요? 놀러 오세요!</string>
+  <string name="notify_desc_5">두뇌 기어 돌려라!</string>
+  <string name="notify_desc_6">새 나라 탐험 준비하세요!</string>
+  <string name="notify_desc_7">다음 국가 뷰: 잠금 해제 임박!</string>
+  <string name="notify_desc_8">다음 국가는 당신 것? 탭해서 확인하세요!</string>
+  <string name="notify_desc_9">새 기능 대방출! 지금 체험하세요!</string>
+  <string name="notify_desc_10">신기능 오픈! 지금 바로 체험하라!</string>
+  <string name="notify_desc_11">모험 재개하라! 새로운 국가를 발견하라!</string>
+  <string name="notify_desc_12">여행 계속하라! 신선한 목적지를 찾아라!</string>
+
+  <string name="notify_channel_id" translatable="false">jc_tilematch_notify_id</string>
+  <string name="notify_channel_name" translatable="false">jc_tilematch_notify_name</string>
+
+</resources>

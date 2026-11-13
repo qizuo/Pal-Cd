@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">TileMatch</string>
+  <string name="game_view_content_description">Game view</string>
+
+  <string name="notify_title">💖Les tuiles te regrettent!🤩</string>
+  <string name="notify_desc_1">Aligne les tuiles ! Détente en un clic.</string>
+  <string name="notify_desc_2">Vos tuiles vous attendent. Retrouvailles !</string>
+  <string name="notify_desc_3">La joie simple des tuiles ! Saisissez la vôtre !</string>
+  <string name="notify_desc_4">Prêt à muscler ton cerveau ? Viens jouer !</string>
+  <string name="notify_desc_5">Mets ton cerveau en marche !</string>
+  <string name="notify_desc_6">Prêt à explorer un nouveau pays ?</string>
+  <string name="notify_desc_7">Pays suivant : déblocage imminent !</string>
+  <string name="notify_desc_8">Ton pays ensuite ? Tape pour voir !</string>
+  <string name="notify_desc_9">Des nouveautés à foison ! Venez essayer !</string>
+  <string name="notify_desc_10">Nouveautés débloquées ! Plongez dès maintenant !</string>
+  <string name="notify_desc_11">Reprenez l\'aventure ! Découvrez un nouveau pays !</string>
+  <string name="notify_desc_12">Continue de voyager ! Découvre des destinations inédites !</string>
+
+  <string name="notify_channel_id" translatable="false">jc_tilematch_notify_id</string>
+  <string name="notify_channel_name" translatable="false">jc_tilematch_notify_name</string>
+
+</resources>

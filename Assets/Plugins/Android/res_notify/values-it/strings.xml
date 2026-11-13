@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">TileMatch</string>
+  <string name="game_view_content_description">Game view</string>
+
+  <string name="notify_title">💖Le tessere ti aspettano!🤩</string>
+  <string name="notify_desc_1">Abbina le tessere! Un tap per rilassarti.</string>
+  <string name="notify_desc_2">Le tessere ti aspettano. È ora di ritrovarsi!</string>
+  <string name="notify_desc_3">Gioia facile delle tessere! Rividicala subito!</string>
+  <string name="notify_desc_4">Pronto ad allenare la mente? Vieni a giocare!</string>
+  <string name="notify_desc_5">Metti in moto il tuo cervello!</string>
+  <string name="notify_desc_6">Preparati a esplorare una nuova nazione!</string>
+  <string name="notify_desc_7">Prossimo paese: Sblocco imminente!</string>
+  <string name="notify_desc_8">Il tuo paese dopo? Tocca per scoprire!</string>
+  <string name="notify_desc_9">Funzioni nuove a iosa! Provale subito!</string>
+  <string name="notify_desc_10">Nuove funzioni sbloccate! Tuffati ora!</string>
+  <string name="notify_desc_11">Riprendi l\'avventura! Scopri una nuova nazione!</string>
+  <string name="notify_desc_12">Continua a viaggiare! Scopri mete inedite!</string>
+
+  <string name="notify_channel_id" translatable="false">jc_tilematch_notify_id</string>
+  <string name="notify_channel_name" translatable="false">jc_tilematch_notify_name</string>
+
+</resources>

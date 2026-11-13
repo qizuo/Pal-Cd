@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<defaultsMap>
+    <!-- Taichi 方案使用 -->
+    <entry>
+        <key>AdLTV_OneDay_Top50Percent</key>
+        <value>0.5</value>
+    </entry>
+
+    <entry>
+        <key>AdLTV_OneDay_Top40Percent</key>
+        <value>0.5</value>
+    </entry>
+
+    <entry>
+        <key>AdLTV_OneDay_Top30Percent</key>
+        <value>0.5</value>
+    </entry>
+
+    <entry>
+        <key>AdLTV_OneDay_Top20Percent</key>
+        <value>0.5</value>
+    </entry>
+
+    <entry>
+        <key>AdLTV_OneDay_Top10Percent</key>
+        <value>0.5</value>
+    </entry>
+
+    <entry>
+        <key>start_show_fullad_level</key>
+        <value>5</value>
+    </entry>
+
+    <entry>
+        <key>fullad_interval_time</key>
+        <value>120</value>
+    </entry>
+
+    <entry>
+        <key>WaterFallAdIdsInterstitial4</key>
+        <value>2|140|ca-app-pub-1740312518939476/6927405695,2|150|ca-app-pub-1740312518939476/9721089996,2|200|ca-app-pub-1740312518939476/9294053890,2|240|ca-app-pub-1740312518939476/5614324029,2|260|ca-app-pub-1740312518939476/4301242351,2|300|ca-app-pub-1740312518939476/5343200595,2|350|ca-app-pub-1740312518939476/3619055383,1|400|ca-app-pub-1740312518939476/5870131435,2|440|ca-app-pub-1740312518939476/7039086336,2|460|ca-app-pub-1740312518939476/9913000998,1|520|ca-app-pub-1740312518939476/4557049769,2|550|ca-app-pub-1740312518939476/7094926656,2|600|ca-app-pub-1740312518939476/8679810371,2|650|ca-app-pub-1740312518939476/7366728704,1|750|ca-app-pub-1740312518939476/3709157599,2|800|ca-app-pub-1740312518939476/9090873915,2|900|ca-app-pub-1740312518939476/4468763311,1|1000|ca-app-pub-1740312518939476/1203022562,2|1200|ca-app-pub-1740312518939476/3243968099,2|1500|ca-app-pub-1740312518939476/1930886420,2|1800|ca-app-pub-1740312518939476/6464710575,2|2000|ca-app-pub-1740312518939476/5726004665</value>
+    </entry>
+
+    <entry>
+        <key>WaterFallAdIdsRewarded4</key>
+        <value>3|500|ca-app-pub-1740312518939476/3130998124,3|700|ca-app-pub-1740312518939476/9504834780,3|1100|ca-app-pub-1740312518939476/1830358897</value>
+    </entry>
+
+    <entry>
+        <key>WaterFallAdIdsBanner4</key>
+        <value>4|150|ca-app-pub-1740312518939476/6861950454,4|200|ca-app-pub-1740312518939476/4235787112,4|300|ca-app-pub-1740312518939476/8586913904</value>
+    </entry>
+
+    <entry>
+        <key>addressable_catalog_name</key>
+        <value>catalog_4.0.json</value>
+    </entry>
+
+    <entry>
+        <key>waterfall_executor_pool_size</key>
+        <value>2</value>
+    </entry>
+
+    <entry>
+        <key>native_ad_close_mask_size</key>
+        <value>35</value>
+    </entry>
+
+    <entry>
+        <key>native_ad_style</key>
+        <value>new</value>
+    </entry>
+
+    <entry>
+        <key>native_ad_mask_time</key>
+        <value>0</value>
+    </entry>
+    <entry>
+        <key>key_user_channels_ad</key>
+        <value></value>
+    </entry>
+
+</defaultsMap>

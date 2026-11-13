@@ -1,0 +1,10 @@
+org.gradle.jvmargs=-Xmx**JVM_HEAP_SIZE**M
+org.gradle.parallel=true
+#android.enableR8=**MINIFY_WITH_R_EIGHT**
+**ADDITIONAL_PROPERTIES**
+
+android.enableJetifier=true
+android.useAndroidX=true
+
+# 在这里添加你自己的配置，包括 distributionUrl
+distributionUrl=https\://mirrors.cloud.tencent.com/gradle/gradle-8.12-all.zip

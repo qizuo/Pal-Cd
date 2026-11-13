@@ -70,9 +70,9 @@ public class PlayerCamera : MonoBehaviour
         yDeg = ClampAngle (yDeg, yMinLimit, yMaxLimit); 
         xDeg = ClampAngle (xDeg, -360, 360); 
 		
-        Quaternion rotation = Quaternion.Euler (yDeg, xDeg, 0); 
+        Quaternion rotation = Quaternion.Euler (yDeg, xDeg, 0);
 
-
+ 
         desiredDistance -= Input.GetAxis ("Mouse ScrollWheel") * Time.deltaTime * zoomRate * Mathf.Abs (desiredDistance); 
         desiredDistance = Mathf.Clamp (desiredDistance, minDistance, maxDistance); 
         correctedDistance = desiredDistance; 

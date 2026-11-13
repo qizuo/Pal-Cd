@@ -1,0 +1,73 @@
+apply plugin: 'com.android.library'
+**APPLY_PLUGINS**
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    
+    // 引入GameSdk BoM
+      implementation platform("com.cdjc.gamesdk:gamesdk-bom:5.5.0")
+        implementation "com.cdjc.gamesdk:gamesdk-core"
+        implementation "com.cdjc.gamesdk:gamesdk-ads-admobwaterfalladapter"
+        implementation "com.cdjc.gamesdk:gamesdk-cmp-admobadapter"
+    //    implementation "com.cdjc.gamesdk:gamesdk-cmp-maxadapter"
+    //    implementation "com.cdjc.gamesdk:gamesdk-ads-maxadapter"
+    
+        implementation 'com.cdjc.gamesdk:gamesdk-attribution-singularadapter'
+        implementation "com.cdjc.gamesdk:gamesdk-unityadapter"
+    
+        implementation "com.cdjc.gamesdk:gamesdk-billing"
+    
+        implementation 'com.google.ads.mediation:facebook:6.20.0.0' // Facebook admob
+        implementation 'com.unity3d.ads:unity-ads:4.15.1' // Unity
+        implementation 'com.google.ads.mediation:unity:4.15.1.0' // Unity
+        implementation 'com.google.ads.mediation:applovin:13.3.1.1' // AppLovin
+        implementation 'com.google.ads.mediation:ironsource:8.10.0.0' // IronSource
+        implementation 'com.google.ads.mediation:vungle:7.5.0.1' // Vungle (Liftoff)
+        implementation 'com.google.ads.mediation:mintegral:16.9.71.0' // Mintegral
+        implementation 'com.google.ads.mediation:pangle:7.3.0.3.0' // Pangle
+    
+    //    implementation 'com.google.ads.mediation:facebook:6.16.0.2'//facebook max
+    //    implementation 'com.applovin.mediation:unityads-adapter:4.12.2.0'//Unity
+    //    implementation 'com.applovin.mediation:ironsource-adapter:8.3.0.0.1' //IronSource
+    //    implementation 'com.applovin.mediation:vungle-adapter:7.4.1.0'//Liftoff
+    //    implementation 'com.applovin.mediation:mintegral-adapter:16.8.51.0' //Mintegral
+    //    implementation 'com.applovin.mediation:bytedance-adapter:6.2.0.5.1' //Pangle
+    
+**DEPS**}
+
+android {
+	ndkPath "**NDKPATH**"
+	namespace "com.unity3d.player"
+	ndkVersion "23.1.7779620"
+    compileSdkVersion 35
+    buildToolsVersion '35.0.0'
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    defaultConfig {
+        minSdkVersion **MINSDKVERSION**
+        targetSdkVersion **TARGETSDKVERSION**
+        ndk {
+            abiFilters **ABIFILTERS**
+        }
+        versionCode **VERSIONCODE**
+        versionName '**VERSIONNAME**'
+        consumerProguardFiles 'proguard-unity.txt'**USER_PROGUARD**
+        
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    aaptOptions {
+        noCompress = **BUILTIN_NOCOMPRESS** + unityStreamingAssets.tokenize(', ').collect { asset -> int dot = asset.lastIndexOf('.'); dot >= 0 ? asset.substring(dot) : asset }.unique()
+        ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~"
+    }**PACKAGING_OPTIONS**
+}**REPOSITORIES**
+**IL_CPP_BUILD_SETUP**
+**SOURCE_BUILD_SETUP**
+**EXTERNAL_SOURCES**

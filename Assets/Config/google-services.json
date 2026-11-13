@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "935864283428",
+    "project_id": "jjjtile-match-f540b",
+    "storage_bucket": "jjjtile-match-f540b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:935864283428:android:5b156c75df7162dccd8000",
+        "android_client_info": {
+          "package_name": "com.jc.houyi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpiOVyx8g_wR-6SDaJ2S0PtoxLVQB2000"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

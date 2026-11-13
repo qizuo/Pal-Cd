@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">TileMatch</string>
+  <string name="game_view_content_description">Game view</string>
+
+  <string name="notify_title">💖タイルが待っています！🤩</string>
+  <string name="notify_desc_1">タイルを揃えて！タップでリラックス</string>
+  <string name="notify_desc_2">タイルが待ってるよ。再会の時だね！</string>
+  <string name="notify_desc_3">タイルマッチの爽快感！今すぐゲットしよう！</string>
+  <string name="notify_desc_4">脳トレの準備はいい？遊びに来て！</string>
+  <string name="notify_desc_5">脳のギアを入れよう！</string>
+  <string name="notify_desc_6">新たな国の探索へ、準備！</string>
+  <string name="notify_desc_7">次の国の風景：解放まで秒読み！</string>
+  <string name="notify_desc_8">次の国はあなたの国？タップして確認！</string>
+  <string name="notify_desc_9">新機能盛りだくさん！ 今すぐ試して！</string>
+  <string name="notify_desc_10">新機能実装！今すぐ体感せよ！</string>
+  <string name="notify_desc_11">冒険を再開！新たな国を発見せよ！</string>
+  <string name="notify_desc_12">旅を続けよ！新たな目的地を発見せよ！</string>
+
+  <string name="notify_channel_id" translatable="false">jc_tilematch_notify_id</string>
+  <string name="notify_channel_name" translatable="false">jc_tilematch_notify_name</string>
+
+</resources>

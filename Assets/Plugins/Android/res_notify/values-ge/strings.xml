@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">TileMatch</string>
+  <string name="game_view_content_description">Game view</string>
+
+  <string name="notify_title">💖Die Kacheln vermissen dich!🤩</string>
+  <string name="notify_desc_1">Verbinde die Kacheln! Entspannung per Tap.</string>
+  <string name="notify_desc_2">Deine Kacheln vermissen dich. Zeit fürs Wiedersehen!</string>
+  <string name="notify_desc_3">Leichte Freude am Kachelspiel! Hol sie dir jetzt!</string>
+  <string name="notify_desc_4">Bereit für Gehirntraining? Komm und spiel!</string>
+  <string name="notify_desc_5">Bring deine Denkmaschine in Gang!</string>
+  <string name="notify_desc_6">Mach dich bereit für ein neues Land!</string>
+  <string name="notify_desc_7">Nächstes Land: Freischaltung unmittelbar!</string>
+  <string name="notify_desc_8">Dein Land als Nächstes? Tipp drauf!</string>
+  <string name="notify_desc_9">Neue Funktionen en masse! Probier sie!</string>
+  <string name="notify_desc_10">Neue Funktionen frei! Tauche jetzt ein!</string>
+  <string name="notify_desc_11">Setze dein Abenteuer fort! Entdecke ein neues Land!</string>
+  <string name="notify_desc_12">Reise weiter! Enthülle neue Ziele!</string>
+
+  <string name="notify_channel_id" translatable="false">jc_tilematch_notify_id</string>
+  <string name="notify_channel_name" translatable="false">jc_tilematch_notify_name</string>
+
+</resources>
