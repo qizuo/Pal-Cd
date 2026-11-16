@@ -18,9 +18,14 @@ namespace Wuxia.Archery
         public Phase CurrentPhase { get; private set; }
         public float Charge { get; private set; }
         public int ShotsFired { get; private set; }
+        public bool IsShooting => CurrentPhase != Phase.Idle;
+        public bool IsHitStunned => hitRemaining > 0;
         public event Action<float> ArrowReleased;
+        // Optional per-shot impact handler; ordinary arrows keep their existing hit behavior.
+        public Func<GameObject, float, Action<Vector3, Collider>> ArrowImpactFactory;
 
         float elapsed, idleTime;
+        float hitRemaining;
         bool releaseRequested;
         Transform[] joints;
         Quaternion[] rest;
@@ -28,7 +33,7 @@ namespace Wuxia.Archery
         LineRenderer bow, bowstring;
         GameObject heldArrow;
         readonly List<Flight> flights = new List<Flight>();
-        struct Flight { public Transform arrow; public Vector3 velocity; public float age, charge; }
+        struct Flight { public Transform arrow; public Vector3 velocity; public float age, charge; public Action<Vector3, Collider> impact; }
 
         void Awake()
         {
@@ -46,11 +51,19 @@ namespace Wuxia.Archery
 
         public void BeginDraw()
         {
-            if (CurrentPhase != Phase.Idle) return;
+            if (IsShooting) return;
+            hitRemaining = 0;
             releaseRequested = false; Charge = 0; Change(Phase.RaiseBow);
         }
         public void ReleaseDraw() { if (CurrentPhase == Phase.RaiseBow || CurrentPhase == Phase.DrawAndCharge) releaseRequested = true; }
         public void CancelDraw() { releaseRequested = false; Charge = 0; Change(Phase.Idle); }
+        public void CancelForAction() { CancelDraw(); hitRemaining = 0; }
+        public void InterruptByHit(float seconds = .3f)
+        {
+            CancelDraw();
+            hitRemaining = Mathf.Max(hitRemaining, seconds);
+            idleTime = 0;
+        }
         void Change(Phase next) { CurrentPhase = next; elapsed = 0; }
 
         void Update()
@@ -66,6 +79,7 @@ namespace Wuxia.Archery
 
         public void Tick(float dt)
         {
+            hitRemaining = Mathf.Max(0, hitRemaining - dt);
             elapsed += dt;
             switch (CurrentPhase)
             {
@@ -74,10 +88,16 @@ namespace Wuxia.Archery
                     if (autoDemo && idleTime > .9f) { idleTime = 0; BeginDraw(); }
                     break;
                 case Phase.RaiseBow:
-                    if (elapsed >= raiseSeconds) Change(Phase.DrawAndCharge);
+                    Charge = Mathf.Clamp01(elapsed / Mathf.Max(.001f, drawSeconds));
+                    if (elapsed >= raiseSeconds)
+                    {
+                        float chargedSeconds = elapsed;
+                        Change(Phase.DrawAndCharge);
+                        elapsed = chargedSeconds;
+                    }
                     break;
                 case Phase.DrawAndCharge:
-                    Charge = Mathf.Clamp01(elapsed / drawSeconds);
+                    Charge = Mathf.Clamp01(elapsed / Mathf.Max(.001f, drawSeconds));
                     if ((releaseRequested && Charge >= .15f) || (autoDemo && elapsed > drawSeconds + .65f))
                     { Fire(); Change(Phase.ReleaseArrow); }
                     break;
@@ -97,7 +117,8 @@ namespace Wuxia.Archery
                     if (distance > 0 && Physics.Raycast(f.arrow.position, f.velocity.normalized, out RaycastHit hit, distance, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
                     {
                         f.arrow.position = hit.point - f.velocity.normalized * .74f;
-                        hit.collider.SendMessageUpwards("OnArrowHit", f.charge, SendMessageOptions.DontRequireReceiver);
+                        if (f.impact != null) { f.impact(hit.point, hit.collider); f.impact = null; }
+                        else hit.collider.SendMessageUpwards("OnArrowHit", f.charge, SendMessageOptions.DontRequireReceiver);
                         f.velocity = Vector3.zero;
                     }
                     else f.arrow.position += f.velocity * dt;
@@ -111,7 +132,7 @@ namespace Wuxia.Archery
         void LateUpdate() { ApplyPose(); }
         public void ApplyPose()
         {
-            if (joints == null) return;
+            if (joints == null || IsHitStunned) return;
             for (int i = 0; i < joints.Length; i++) joints[i].localRotation = rest[i];
             float lift = 0, draw = 0, recoil = 0;
             if (CurrentPhase == Phase.RaiseBow) lift = Smooth(elapsed / raiseSeconds);
@@ -174,18 +195,18 @@ namespace Wuxia.Archery
             shaft.transform.localPosition = new Vector3(0, 0, .36f);
             shaft.transform.localRotation = Quaternion.Euler(90, 0, 0);
             shaft.transform.localScale = new Vector3(.009f, .36f, .009f);
-            shaft.GetComponent<Renderer>().sharedMaterial = arrowMaterial; Destroy(shaft.GetComponent<Collider>());
+            shaft.GetComponent<Renderer>().sharedMaterial = arrowMaterial; shaft.GetComponent<Collider>().enabled = false; Destroy(shaft.GetComponent<Collider>());
             var tip = GameObject.CreatePrimitive(PrimitiveType.Cube); tip.name = "Arrowhead";
             tip.transform.SetParent(go.transform, false); tip.transform.localPosition = new Vector3(0, 0, .74f);
             tip.transform.localScale = new Vector3(.027f, .013f, .075f);
-            tip.GetComponent<Renderer>().sharedMaterial = stringMaterial; Destroy(tip.GetComponent<Collider>());
+            tip.GetComponent<Renderer>().sharedMaterial = stringMaterial; tip.GetComponent<Collider>().enabled = false; Destroy(tip.GetComponent<Collider>());
             for (int i = 0; i < 2; i++)
             {
                 var feather = GameObject.CreatePrimitive(PrimitiveType.Cube); feather.name = "Fletching";
                 feather.transform.SetParent(go.transform, false); feather.transform.localPosition = new Vector3(0, 0, .08f);
                 feather.transform.localRotation = Quaternion.Euler(0, 0, 90 * i);
                 feather.transform.localScale = new Vector3(.065f, .003f, .12f);
-                feather.GetComponent<Renderer>().sharedMaterial = stringMaterial; Destroy(feather.GetComponent<Collider>());
+                feather.GetComponent<Renderer>().sharedMaterial = stringMaterial; feather.GetComponent<Collider>().enabled = false; Destroy(feather.GetComponent<Collider>());
             }
             return go;
         }
@@ -194,7 +215,8 @@ namespace Wuxia.Archery
             ApplyPose();
             GameObject shot = Instantiate(heldArrow, heldArrow.transform.position, heldArrow.transform.rotation);
             shot.name = "Released arrow"; shot.transform.SetParent(null); shot.SetActive(true);
-            flights.Add(new Flight { arrow = shot.transform, velocity = ShotDirection * Mathf.Lerp(18, 40, Charge), charge = Charge });
+            var impact = ArrowImpactFactory?.Invoke(shot, Charge);
+            flights.Add(new Flight { arrow = shot.transform, velocity = ShotDirection * Mathf.Lerp(18, 40, Charge), charge = Charge, impact = impact });
             ShotsFired++; ArrowReleased?.Invoke(Charge);
         }
         void OnGUI()

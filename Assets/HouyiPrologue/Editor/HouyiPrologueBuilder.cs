@@ -45,6 +45,7 @@ public static class HouyiPrologueBuilder
             scenery = new GameObject("01 · 枯桑村 / Environment").transform;
             var story = new GameObject("00 · Prologue Director").AddComponent<PrologueDirector>();
             story.chineseFont = AssetDatabase.LoadAssetAtPath<Font>("Assets/MSYH.TTF");
+            story.gameObject.AddComponent<PrologueLoadingScreen>().chineseFont = story.chineseFont;
 
             var source = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/ArcheryDemo/BlueRobeArcher.prefab");
             if (!source) throw new InvalidOperationException("Build the BlueRobeArcher prefab first.");
@@ -101,7 +102,7 @@ public static class HouyiPrologueBuilder
                 var beast = go.AddComponent<PrologueTarget>(); beast.kind = PrologueTarget.Kind.Beast; beast.story = story; beast.health = 2;
                 Primitive(PrimitiveType.Sphere, "Ember heart", p + new Vector3(0, .8f, 0), Vector3.one * .3f, ember, go.transform, false);
                 var glow = new GameObject("Disaster glow").AddComponent<Light>(); glow.transform.SetParent(go.transform, false); glow.transform.localPosition = Vector3.up;
-                glow.type = LightType.Point; glow.color = new Color(1, .15f, .02f); glow.intensity = 1.5f; glow.range = 2;
+                glow.type = LightType.Point; glow.color = Color.white; glow.intensity = 1.5f; glow.range = 2;
                 beasts.Add(beast);
             }
             story.beasts = beasts.ToArray();
@@ -180,7 +181,7 @@ public static class HouyiPrologueBuilder
             Primitive(PrimitiveType.Cylinder, "Altar brazier", new Vector3(x, 1.0f, 41), new Vector3(.65f, .7f, .65f), gold);
             Primitive(PrimitiveType.Sphere, "Undying ritual flame", new Vector3(x, 1.9f, 41), new Vector3(.45f, .8f, .45f), ember, null, false);
             var fire = new GameObject("Brazier light").AddComponent<Light>(); fire.transform.SetParent(scenery); fire.transform.position = new Vector3(x, 2.3f, 41);
-            fire.type = LightType.Point; fire.range = 7; fire.intensity = 2; fire.color = new Color(1, .3f, .05f);
+            fire.type = LightType.Point; fire.range = 7; fire.intensity = 2; fire.color = Color.white;
         }
         // Distant escarpments form a silhouette, while invisible walls keep the prototype bounded.
         var mountain = Mat("Distant mountains", new Color(.27f, .23f, .18f));
@@ -195,14 +196,14 @@ public static class HouyiPrologueBuilder
     static void BuildSky(PrologueDirector story)
     {
         var main = new GameObject("Sun · oppressive noon").AddComponent<Light>(); main.type = LightType.Directional;
-        main.transform.rotation = Quaternion.Euler(43, -28, 0); main.color = new Color(1, .76f, .46f); main.intensity = 1.25f;
+        main.transform.rotation = Quaternion.Euler(43, -28, 0); main.color = Color.white; main.intensity = 1.25f;
         main.shadows = LightShadows.Soft; main.shadowStrength = .8f; story.sunLight = main;
         var fill = new GameObject("Sky fill").AddComponent<Light>(); fill.type = LightType.Directional;
-        fill.transform.rotation = Quaternion.Euler(30, 150, 0); fill.color = new Color(.6f, .66f, .69f); fill.intensity = .5f;
-        RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat; RenderSettings.ambientLight = new Color(.47f, .38f, .28f);
-        RenderSettings.fog = true; RenderSettings.fogColor = new Color(.58f, .39f, .22f); RenderSettings.fogMode = FogMode.ExponentialSquared; RenderSettings.fogDensity = .008f;
+        fill.transform.rotation = Quaternion.Euler(30, 150, 0); fill.color = Color.white; fill.intensity = .5f;
+        RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat; RenderSettings.ambientLight = new Color(.47f, .47f, .47f);
+        RenderSettings.fog = true; RenderSettings.fogColor = new Color(.65f, .65f, .65f); RenderSettings.fogMode = FogMode.ExponentialSquared; RenderSettings.fogDensity = .008f;
         var sky = Mat("Dust sky", Color.white); sky.shader = Shader.Find("Houyi/DustSky");
-        sky.SetColor("_Horizon", new Color(.62f, .43f, .25f)); sky.SetColor("_Zenith", new Color(.12f, .17f, .19f));
+        sky.SetColor("_Horizon", new Color(.68f, .68f, .68f)); sky.SetColor("_Zenith", new Color(.26f, .26f, .26f));
         RenderSettings.skybox = sky; RenderSettings.sun = main;
         var sunlight = Mat("First sun", new Color(1, 1, .9f)); sunlight.shader = Shader.Find("Houyi/SunFire");
         var forbidden = Mat("Forbidden sun surface", new Color(1, .7f, .4f)); forbidden.shader = Shader.Find("Houyi/SunFire");

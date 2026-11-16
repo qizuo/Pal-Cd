@@ -82,6 +82,7 @@ namespace Houyi.NineSuns
             linen = Mat("布衣", new Color(.64f, .60f, .43f)); water = Mat("清泉", new Color(.13f, .55f, .61f));
             dark = Mat("炭灰", new Color(.055f, .055f, .05f)); Fire = Mat("赤日之火", new Color(1, .16f, .025f), true);
             Warning = Mat("危险预警", new Color(.8f, .16f, .045f), true);
+            c.WorldRoot.gameObject.AddComponent<ChapterOneMaterials>().owned = new[] { earth, road, bark, stone, leaf, bronze, linen, water, dark, Fire, Warning };
             Box(c, "山地", 0, -.3f, 104, new Vector3(70, .6f, 240), earth);
             Box(c, "主山道", 0, .012f, 85, new Vector3(8, .02f, 190), road, false);
             Box(c, "药草支路", -8, .018f, 48, new Vector3(15, .025f, 3.2f), road, false);
@@ -150,6 +151,8 @@ namespace Houyi.NineSuns
             foreach (int sign in new[] { -1, 1 }) Box(c, "首领岩壁", sign * 19, 2.5f, 184, new Vector3(2, 5, 52), stone);
             Box(c, "首领后岩壁", 0, 2.5f, 210, new Vector3(40, 5, 2), stone);
             foreach (int sign in new[] { -1, 1 }) Box(c, "首领入口石壁", sign * 12, 2.5f, 158, new Vector3(14, 5, 2), stone);
+            c.ArenaGate = Box(c, "首领战封闭石门", 0, 2.5f, 158, new Vector3(10, 5, 2), stone);
+            c.ArenaGate.SetActive(false);
             var boss = new GameObject("焚角山魈"); boss.transform.SetParent(c.WorldRoot); boss.transform.position = c.Point(0, 190);
             Shape(boss.transform, PrimitiveType.Capsule, "岩甲躯干", boss.transform.position + Vector3.up * 1.7f, new Vector3(2.3f, 1.5f, 1.4f), dark, false);
             Shape(boss.transform, PrimitiveType.Sphere, "山魈头颅", boss.transform.position + new Vector3(0, 2.9f, .35f), Vector3.one * 1.4f, stone, false);
@@ -163,7 +166,7 @@ namespace Houyi.NineSuns
             }
             var bossHitbox = boss.AddComponent<BoxCollider>(); bossHitbox.center = Vector3.up * 1.6f; bossHitbox.size = new Vector3(2.8f, 3.2f, 1.8f);
             c.Boss = boss.AddComponent<ChapterOneActor>(); c.Boss.Initialize(c, ChapterOneActor.Type.Boss, ChapterOneDirector.Stage.Boss, 24);
-            c.WeakPoint = Target(c, "角上火核", ChapterOneActor.Type.WeakPoint, ChapterOneDirector.Stage.Boss, boss.transform.position + Vector3.up * 3.35f, Vector3.one * 1.25f, 1);
+            c.WeakPoint = Target(c, "角上火核", ChapterOneActor.Type.WeakPoint, ChapterOneDirector.Stage.Boss, boss.transform.position + Vector3.up * 3.95f, Vector3.one * 1.25f, 1);
             c.WeakPoint.gameObject.SetActive(false);
             c.Spring = new GameObject("山泉泉眼").transform; c.Spring.SetParent(c.WorldRoot); c.Spring.position = c.Point(0, 201);
             Shape(c.WorldRoot, PrimitiveType.Cylinder, "泉眼石池", c.Spring.position + Vector3.up * .08f, new Vector3(8, .08f, 8), dark, false);
@@ -177,5 +180,10 @@ namespace Houyi.NineSuns
     {
         public Camera view;
         void LateUpdate() { if (view) transform.rotation = view.transform.rotation; }
+    }
+    public sealed class ChapterOneMaterials : MonoBehaviour
+    {
+        public Material[] owned;
+        void OnDestroy() { if (owned != null) foreach (var material in owned) if (material) Destroy(material); }
     }
 }

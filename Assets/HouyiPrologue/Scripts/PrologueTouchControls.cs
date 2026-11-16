@@ -7,7 +7,7 @@ namespace Houyi.NineSuns
     public sealed class PrologueTouchInput
     {
         public enum Phase { Began, Moved, Stationary, Ended, Canceled }
-        enum Role { Blocked, Move, Look, Fire, Dodge, AutoMoveCancel, Interact, Pause, Journal }
+        enum Role { Blocked, Move, Look, Fire, Dodge, Skill, AutoMoveCancel, Interact, Pause, Journal }
         sealed class Pointer { public Role role; public Vector2 last; public int frame; }
         readonly Dictionary<int, Pointer> pointers = new Dictionary<int, Pointer>();
         readonly List<int> stale = new List<int>();
@@ -23,12 +23,14 @@ namespace Houyi.NineSuns
         public bool PausePressed { get; private set; }
         public bool JournalPressed { get; private set; }
         public bool DodgePressed { get; private set; }
+        public bool SkillPressed { get; private set; }
         public bool AutoMoving { get; private set; }
         public bool AutoMoveReady { get; private set; }
         float outerHoldStarted = -1, frameTime;
         public Vector2 StickCenter, FireCenter;
         public float StickRadius = 140, FireRadius = 105;
-        public Rect LookArea, InteractRect, PauseRect, JournalRect, DodgeRect, AutoMoveRect;
+        public Rect LookArea, InteractRect, PauseRect, JournalRect, DodgeRect, AutoMoveRect, SkillRect;
+        public bool ShowSkill;
         public bool ShowInteraction;
 
         public void BeginFrame()
@@ -40,6 +42,7 @@ namespace Houyi.NineSuns
             frameTime = time;
             frame++; LookDelta = Vector2.zero;
             DodgePressed = false;
+            SkillPressed = false;
             FirePressed = FireReleased = FireCanceled = InteractPressed = PausePressed = JournalPressed = false;
         }
         public void Process(int id, Vector2 position, Phase phase)
@@ -54,6 +57,7 @@ namespace Houyi.NineSuns
                 else if (AutoMoving && AutoMoveRect.Contains(position))
                 { role = Role.AutoMoveCancel; CancelAutoMove(); }
                 else if (DodgeRect.Contains(position)) { role = Role.Dodge; DodgePressed = true; }
+                else if (ShowSkill && SkillRect.Contains(position)) { role = Role.Skill; SkillPressed = true; }
                 else if (Vector2.Distance(position, FireCenter) <= FireRadius)
                 { if (fireId == int.MinValue) { role = Role.Fire; fireId = id; FirePressed = true; } }
                 else if (Vector2.Distance(position, StickCenter) <= StickRadius && moveId == int.MinValue)
@@ -131,6 +135,7 @@ namespace Houyi.NineSuns
             FirePressed = FireReleased = InteractPressed = PausePressed = JournalPressed = false;
             FireCanceled = hadFire;
             DodgePressed = false;
+            SkillPressed = false;
         }
     }
 
@@ -166,6 +171,7 @@ namespace Houyi.NineSuns
             InputState.AutoMoveRect = new Rect(safe.xMin + 115, safe.yMax - 455, 150, 70);
             InputState.FireCenter = new Vector2(safe.xMax - 175, safe.yMax - 200);
             InputState.DodgeRect = new Rect(safe.xMax - 420, safe.yMax - 318, 130, 76);
+            InputState.SkillRect = new Rect(safe.xMax - 420, safe.yMax - 220, 130, 90);
             InputState.InteractRect = new Rect(safe.xMax - 540, safe.yMax - 465, 245, 100);
             InputState.PauseRect = new Rect(safe.xMax - 185, safe.yMin + 22, 155, 68);
             InputState.JournalRect = new Rect(safe.xMax - 365, safe.yMin + 22, 155, 68);
@@ -186,6 +192,7 @@ namespace Houyi.NineSuns
             wasActive = true;
             if (!player.story.CanControl) { InputState.CancelAll(); previewMouseHeld = false; return; }
             InputState.BeginFrame(); InputState.ShowInteraction = player.story.CanInteract;
+            InputState.ShowSkill = player.Sunburst && player.Sunburst.Unlocked;
             if (UnityEngine.Input.touchCount > 0)
             {
                 previewMouseHeld = false;
@@ -266,11 +273,18 @@ namespace Houyi.NineSuns
             DrawCircle(fire, 105, ring, new Color(.25f, 1, 1));
             GUI.Label(new Rect(fire.x - 105, fire.y - 60, 210, 120), InputState.FireHeld ? "松手\n放箭" : "按住\n蓄力", label);
             float cooldown = player.DodgeCooldownRemaining;
-            GUI.color = cooldown > 0 ? new Color(.45f, .45f, .45f, .9f) : new Color(.25f, 1, 1);
+            bool staminaLow = player.Stamina < ProloguePlayer.DodgeStaminaCost;
+            GUI.color = cooldown > 0 || staminaLow ? new Color(.45f, .45f, .45f, .9f) : new Color(.25f, 1, 1);
             GUI.DrawTexture(InputState.DodgeRect, Texture2D.whiteTexture);
             Rect dodgeInner = InputState.DodgeRect;
             dodgeInner.xMin += 2; dodgeInner.xMax -= 2; dodgeInner.yMin += 2; dodgeInner.yMax -= 2;
-            DrawButton(dodgeInner, cooldown > 0 ? cooldown.ToString("0.0") + "s" : "闪避");
+            DrawButton(dodgeInner, cooldown > 0 ? cooldown.ToString("0.0") + "s" : staminaLow ? "气力不足" : "闪避");
+            if (player.Sunburst && player.Sunburst.Unlocked)
+            {
+                float skillCooldown = player.Sunburst.CooldownRemaining;
+                DrawButton(InputState.SkillRect, skillCooldown > 0 ? skillCooldown.ToString("0.0") + "s"
+                    : player.Sunburst.Selected ? "取消\n落日震" : "落日震");
+            }
             GUI.Label(new Rect(1030, 670, 280, 45), "右侧滑动瞄准", hint);
             if (player.story.CanInteract) DrawButton(InputState.InteractRect, player.story.InteractionLabel);
             DrawButton(InputState.JournalRect, "札记"); DrawButton(InputState.PauseRect, "暂停");

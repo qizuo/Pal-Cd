@@ -13,7 +13,7 @@ namespace Houyi.NineSuns
         public readonly List<ChapterOneActor> Actors = new List<ChapterOneActor>();
         public readonly List<Transform> Clues = new List<Transform>();
         public Transform Elder, Captive, Shrine, Spring, Lore, Supply;
-        public GameObject Cage, Gate, Water, Corruption;
+        public GameObject Cage, Gate, ArenaGate, Water, Corruption;
         public ChapterOneActor Boss, WeakPoint;
         public Transform WorldRoot { get; private set; }
         public int CluesFound { get; private set; }
@@ -93,11 +93,32 @@ namespace Houyi.NineSuns
             WorldRoot.position = new Vector3(180, 0, 0);
             ChapterOneWorld.Build(this);
             if (Story.nineSuns) Story.nineSuns.SetActive(true);
-            if (Story.sunLight) { Story.sunLight.color = new Color(1, .65f, .35f); Story.sunLight.intensity = 1.2f; }
+            Story.ApplyWhiteLighting();
+            if (Story.sunLight) Story.sunLight.intensity = 1.2f;
             Story.player.yaw = 0; Story.player.pitch = 8;
             Story.player.Teleport(Point(0, 0));
             SetStage(Stage.Village, Point(0, 0));
             Story.Notify("第 1 章 · 追火入山。山口的村老正等着你。", 7);
+        }
+        public void EnterBossPreview()
+        {
+            ClearStones(); BossWarning = null;
+            Story.player.archer.CancelForAction();
+            if (Story.player.Sunburst) Story.player.Sunburst.CancelSelection();
+            foreach (var actor in Actors)
+            {
+                if (actor.Encounter != Stage.Boss) actor.gameObject.SetActive(false);
+                else { actor.gameObject.SetActive(true); actor.ResetEncounter(); }
+            }
+            WeakPoint.gameObject.SetActive(false);
+            foreach (var t in new[] { Elder, Captive, Supply, Lore }) if (t) t.gameObject.SetActive(false);
+            Cage.SetActive(false); Gate.SetActive(false); ArenaGate.SetActive(true);
+            Water.SetActive(false); Corruption.SetActive(true);
+            Story.player.yaw = 0; Story.player.pitch = 8;
+            Story.player.Teleport(Point(0, 166));
+            if (Story.player.Sunburst) Story.player.Sunburst.RestoreCooldown(0);
+            SetStage(Stage.Boss, Point(0, 166));
+            Story.Notify("Boss 试玩：焚角山魈。引它撞壁，再满蓄力射击角上火核。", 7);
         }
         public Vector3 Point(float x, float z, float y = 0) => WorldRoot.position + new Vector3(x, y, z);
         void SetStage(Stage stage, Vector3 safePosition)
@@ -105,6 +126,7 @@ namespace Houyi.NineSuns
             Current = stage; checkpoint = safePosition;
             Story.ChapterCheckpoint(checkpoint);
             Story.Notify(Objective, 7);
+            Story.SaveProgress();
         }
         void Update()
         {
@@ -114,6 +136,7 @@ namespace Houyi.NineSuns
                 SetStage(Stage.Rescue, Point(0, 94));
             if (Current == Stage.Approach && Vector3.Distance(Story.player.transform.position, Shrine.position) < 15)
             {
+                ArenaGate.SetActive(true);
                 SetStage(Stage.Boss, Point(0, 160));
                 Story.Notify("焚角山魈挡住了山泉！引它撞向石壁，蓄力射击角上的火核。", 9);
             }
@@ -125,7 +148,7 @@ namespace Houyi.NineSuns
             if (target == Supply)
             {
                 supplyTaken = true; Supply.gameObject.SetActive(false);
-                Story.ChapterCheckpoint(checkpoint); Story.Notify("取用药草与清水，气血恢复。支路补给只能取用一次。", 6); return;
+                Story.ChapterCheckpoint(checkpoint); Story.SaveProgress(); Story.Notify("取用药草与清水，气血恢复。支路补给只能取用一次。", 6); return;
             }
             if (target == Lore)
             {
@@ -143,7 +166,7 @@ namespace Houyi.NineSuns
                 case Stage.Rescue:
                     Story.Talk(new[] { "运水队长|多谢！那些灾狼把我们逼进木笼。山门的三团火挡住了回泉眼的路。", "后羿|你们先回村。山门与守山兽，交给我。", "运水队长|那头山魈会直冲岩壁，撞晕时角上发红。猎人，抓住那一瞬间！" }, () => SetStage(Stage.Gate, Point(0, 119))); break;
                 case Stage.Spring:
-                    Story.Talk(new[] { "后羿|水回来了……泉底却还压着这枚赤红碎片。", "运水队长|灾兽身上的火，竟与它一模一样。难道山魈也是受害者？", "后羿|碎片只是开端。远山的赤光还在蔓延，我会继续追下去。" }, () => { Current = Stage.Complete; ClearStones(); Story.player.archer.CancelDraw(); }); break;
+                    Story.Talk(new[] { "后羿|水回来了……泉底却还压着这枚赤红碎片。", "运水队长|灾兽身上的火，竟与它一模一样。难道山魈也是受害者？", "后羿|碎片只是开端。远山的赤光还在蔓延，我会继续追下去。" }, () => { Current = Stage.Complete; ClearStones(); Story.player.archer.CancelDraw(); Story.SaveProgress(); }); break;
             }
         }
         public bool Active(ChapterOneActor actor) => Story && Story.CanControl && actor.Encounter == Current && !actor.Defeated;
@@ -154,6 +177,7 @@ namespace Houyi.NineSuns
             if (actor.Kind == ChapterOneActor.Type.WeakPoint)
             {
                 if (!Boss.Exposed) return;
+                if (charge >= .8f && Story.PrecisionRecoveryUnlocked) Story.player.RecoverStamina(10);
                 Boss.TakeDamage(charge >= .8f ? 4 : 1);
                 Story.Notify(charge >= .8f ? "满蓄力命中火核！" : "火核受损，满蓄力伤害更高。");
                 if (Boss.Defeated) DefeatBoss();
@@ -162,6 +186,10 @@ namespace Houyi.NineSuns
             if (actor.Kind == ChapterOneActor.Type.Core && charge < .8f) { Story.Notify("火核需要满蓄力才能击碎。"); return; }
             actor.TakeDamage(charge >= .8f ? 2 : 1);
             if (!actor.Defeated) return;
+            ActorDefeated(actor);
+        }
+        void ActorDefeated(ChapterOneActor actor)
+        {
             if (actor.Kind == ChapterOneActor.Type.Rope)
             {
                 RopeCut = true; Cage.SetActive(false); Story.Notify("绳结已断！击退周围灾狼，再与运水队交谈。", 6);
@@ -171,10 +199,55 @@ namespace Houyi.NineSuns
                 Gate.SetActive(false); SetStage(Stage.Approach, Point(0, 145));
             }
             else Story.Notify(Progress);
+            Story.SaveProgress();
+        }
+        public int SunburstHit(Vector3 center, float charge, float radius)
+        {
+            if (!Story.CanControl) return 0;
+            int hits = 0;
+            int damage = Mathf.RoundToInt(Mathf.Lerp(1, 2, Mathf.Clamp01(charge)) * 1.5f);
+            foreach (var actor in Actors)
+            {
+                if (!actor.IsEnemy || !Active(actor)) continue;
+                if (actor.Kind == ChapterOneActor.Type.Boss && !actor.Exposed) continue;
+                Collider body = actor.GetComponent<Collider>();
+                Vector3 point = body ? body.ClosestPoint(center) : actor.transform.position;
+                if ((point - center).sqrMagnitude > radius * radius) continue;
+                actor.TakeDamage(damage); hits++;
+                if (actor.Defeated)
+                {
+                    if (actor.Kind == ChapterOneActor.Type.Boss) DefeatBoss();
+                    else ActorDefeated(actor);
+                }
+                else actor.Stagger(.45f);
+            }
+            return hits;
+        }
+        public HouyiProgress CaptureProgress()
+        {
+            var defeated = new bool[Actors.Count];
+            for (int i = 0; i < Actors.Count; i++) defeated[i] = Actors[i].Defeated;
+            return new HouyiProgress { chapter = 1, stage = (int)Current, checkpoint = checkpoint,
+                cluesFound = CluesFound, ropeCut = RopeCut, supplyTaken = supplyTaken, loreRead = loreRead, actors = defeated };
+        }
+        public bool RestoreProgress(HouyiProgress progress)
+        {
+            if (progress.actors.Length != Actors.Count || progress.cluesFound < 0 || progress.cluesFound > Clues.Count) return false;
+            Current = (Stage)progress.stage; checkpoint = progress.checkpoint;
+            CluesFound = progress.cluesFound; RopeCut = progress.ropeCut;
+            supplyTaken = progress.supplyTaken; loreRead = progress.loreRead;
+            for (int i = 0; i < Actors.Count; i++) if (progress.actors[i]) Actors[i].RestoreDefeated();
+            Cage.SetActive(!RopeCut); Supply.gameObject.SetActive(!supplyTaken);
+            Gate.SetActive(Current < Stage.Approach);
+            ArenaGate.SetActive(Current == Stage.Boss);
+            Water.SetActive(Current >= Stage.Spring); Corruption.SetActive(Current < Stage.Spring);
+            WeakPoint.gameObject.SetActive(false); ClearStones(); BossWarning = null;
+            return true;
         }
         void DefeatBoss()
         {
             WeakPoint.gameObject.SetActive(false); ClearStones(); BossWarning = null;
+            ArenaGate.SetActive(false);
             Corruption.SetActive(false); Water.SetActive(true);
             SetStage(Stage.Spring, Point(0, 170));
             Story.Notify("焚角山魈已倒下，山泉复流！靠近泉眼调查赤日碎片。", 8);

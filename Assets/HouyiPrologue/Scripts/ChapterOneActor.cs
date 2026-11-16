@@ -21,11 +21,14 @@ namespace Houyi.NineSuns
         bool dealtDamage;
         Vector3 lockedDirection, scale;
         GameObject telegraph;
+        Collider healthBarBody;
+        GUIStyle healthBarText;
         bool Enraged => Kind == Type.Boss && Health <= MaxHealth / 2;
 
         public void Initialize(ChapterOneDirector chapter, Type kind, ChapterOneDirector.Stage encounter, int health)
         {
             Chapter = chapter; Kind = kind; Encounter = encounter; MaxHealth = health;
+            healthBarBody = GetComponent<Collider>();
             Home = transform.position; scale = transform.localScale;
             ResetEncounter(); chapter.Actors.Add(this);
         }
@@ -37,6 +40,13 @@ namespace Houyi.NineSuns
             if (telegraph) telegraph.SetActive(false);
         }
         public void OnArrowHit(float charge) { if (Chapter) Chapter.Hit(this, charge); }
+        public void RestoreDefeated() { TakeDamage(MaxHealth); transform.localScale = Vector3.zero; }
+        public void Stagger(float seconds)
+        {
+            if (Defeated || !IsEnemy || Kind == Type.Boss) return;
+            State = AttackState.Recover; timer = seconds;
+            if (telegraph) telegraph.SetActive(false);
+        }
         public void TakeDamage(int amount)
         {
             if (Defeated) return;
@@ -50,7 +60,7 @@ namespace Houyi.NineSuns
             if (!Chapter) return;
             if (Kind == Type.WeakPoint)
             {
-                if (Chapter.Boss) transform.position = Chapter.Boss.transform.position + Vector3.up * 3.35f + Chapter.Boss.transform.forward * .7f;
+                if (Chapter.Boss) transform.position = Chapter.Boss.transform.position + Vector3.up * 3.95f + Chapter.Boss.transform.forward * .15f;
                 return;
             }
             if (Defeated) { transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime * 3); return; }
@@ -62,6 +72,7 @@ namespace Houyi.NineSuns
             switch (State)
             {
                 case AttackState.Idle:
+                    if (Kind == Type.Crow) transform.position = new Vector3(transform.position.x, Mathf.MoveTowards(transform.position.y, Home.y, dt * 4), transform.position.z);
                     if (delta.sqrMagnitude > .01f) transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(delta), dt * 6);
                     if (Kind == Type.Boss)
                     {
@@ -100,6 +111,7 @@ namespace Houyi.NineSuns
                 case AttackState.Dash:
                     float step = Mathf.Min(dt, dashRemaining); dashRemaining -= step;
                     transform.position += lockedDirection * (Kind == Type.Boss ? 15 : 11) * step;
+                    if (Kind == Type.Crow) transform.position = new Vector3(transform.position.x, Mathf.Lerp(.85f, Home.y, dashRemaining / .48f), transform.position.z);
                     Vector3 hitDelta = Chapter.Story.player.transform.position - transform.position; hitDelta.y = 0;
                     if (!dealtDamage && hitDelta.magnitude < (Kind == Type.Boss ? 2 : 1.4f))
                     { Chapter.Story.Hurt(Kind == Type.Boss ? 28 : 12); dealtDamage = true; }
@@ -111,6 +123,7 @@ namespace Houyi.NineSuns
                             local.x = Mathf.Clamp(local.x, -17, 17); local.z = Mathf.Clamp(local.z, 160, 208);
                             transform.position = Chapter.WorldRoot.position + local;
                             State = AttackState.Exposed; timer = Enraged ? 3.8f : 5;
+                            Chapter.WeakPoint.transform.position = transform.position + Vector3.up * 3.95f + transform.forward * .15f;
                             Chapter.WeakPoint.gameObject.SetActive(true);
                             Chapter.Story.Notify("山魈撞壁！角上火核暴露，快蓄力射击！", 4);
                         }
@@ -125,6 +138,34 @@ namespace Houyi.NineSuns
                     if (timer <= 0) { State = AttackState.Idle; timer = Enraged ? .35f : .8f; }
                     break;
             }
+        }
+        void OnGUI()
+        {
+            if (Event.current.type != EventType.Repaint || Defeated ||
+                (Kind != Type.Wolf && Kind != Type.Crow) || !Chapter || !Chapter.Active(this)) return;
+            Camera view = Chapter.Story.player.view;
+            if (!view) return;
+            Vector3 anchor = healthBarBody
+                ? new Vector3(healthBarBody.bounds.center.x, healthBarBody.bounds.max.y + .35f, healthBarBody.bounds.center.z)
+                : transform.position + Vector3.up * 1.6f;
+            if ((view.transform.position - anchor).sqrMagnitude > 45 * 45) return;
+            Vector3 screen = view.WorldToScreenPoint(anchor);
+            if (screen.z <= 0 || screen.x < 0 || screen.x > Screen.width || screen.y < 0 || screen.y > Screen.height) return;
+            if (Physics.Linecast(view.transform.position, anchor, out RaycastHit obstruction, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore)
+                && !obstruction.transform.IsChildOf(transform)) return;
+            float scale = Mathf.Clamp(Screen.height / 1080f, .65f, 1.5f);
+            Rect bar = new Rect(screen.x - 44 * scale, Screen.height - screen.y, 88 * scale, 10 * scale);
+            Color old = GUI.color;
+            GUI.color = new Color(.025f, .025f, .03f, .9f);
+            GUI.DrawTexture(bar, Texture2D.whiteTexture);
+            GUI.color = new Color(.85f, .15f, .1f);
+            GUI.DrawTexture(new Rect(bar.x + scale, bar.y + scale,
+                (bar.width - 2 * scale) * Mathf.Clamp01(Health / (float)Mathf.Max(1, MaxHealth)), bar.height - 2 * scale), Texture2D.whiteTexture);
+            GUI.color = Color.white;
+            if (healthBarText == null) healthBarText = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, normal = { textColor = Color.white } };
+            healthBarText.fontSize = Mathf.RoundToInt(16 * scale);
+            GUI.Label(new Rect(bar.x, bar.y - 23 * scale, bar.width, 23 * scale), Health + " / " + MaxHealth, healthBarText);
+            GUI.color = old;
         }
         void Windup(Vector3 delta, float duration, int attack)
         {

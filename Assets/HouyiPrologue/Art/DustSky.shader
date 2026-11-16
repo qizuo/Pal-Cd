@@ -1,6 +1,6 @@
 Shader "Houyi/DustSky"
 {
-    Properties { _Horizon ("Horizon", Color) = (0.72,0.43,0.20,1) _Zenith ("Zenith", Color) = (0.16,0.20,0.22,1) }
+    Properties { _Horizon ("Horizon", Color) = (0.68,0.68,0.68,1) _Zenith ("Zenith", Color) = (0.26,0.26,0.26,1) }
     SubShader
     {
         Tags { "Queue"="Background" "RenderType"="Background" "PreviewType"="Skybox" }

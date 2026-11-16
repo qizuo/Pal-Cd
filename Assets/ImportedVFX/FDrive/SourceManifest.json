@@ -1,0 +1,312 @@
+[
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\qiuqiu\\glow_0003.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Glow\\glow_0003.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Glow\\glow_0003.mat",
+    "sha256": "2c135601211c6cfef6abe6c89e36b13ffd1f409a63114de7867c71f7438daf3d",
+    "size": [
+      128,
+      128
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\qiuqiu\\glow_0024.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Glow\\glow_0024.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Glow\\glow_0024.mat",
+    "sha256": "ad1a15fc599bfc20e8cd9f4588264b7589a9865ab950c8543c52bcc02e0e69ed",
+    "size": [
+      512,
+      512
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\qiuqiu\\line_0013.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Line\\line_0013.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Line\\line_0013.mat",
+    "sha256": "682a00f6fb05da63a1f21db7615e3c2688c146f3437c48142c2775f5b434f34c",
+    "size": [
+      64,
+      256
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\qiuqiu\\line_0024.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Line\\line_0024.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Line\\line_0024.mat",
+    "sha256": "b1984e6676b13baec71567666f5280bd04fbc5d8d5c5c2c6fa4297c52d3ba438",
+    "size": [
+      128,
+      256
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\qiuqiu\\trail_0000.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Trail\\trail_0000.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Trail\\trail_0000.mat",
+    "sha256": "f5cc1e19aed2850f7ed44c5197ce54d2153a4d9110b746dec7bb2b6a4a1802c7",
+    "size": [
+      32,
+      128
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\qiuqiu\\trail_0012.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Trail\\trail_0012.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Trail\\trail_0012.mat",
+    "sha256": "956d503d0f37284332c7e0db7afa5bdd38d66d12f2480f4e8c13d35c473c05c4",
+    "size": [
+      256,
+      128
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\qiuqiu\\trail_0021.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Trail\\trail_0021.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Trail\\trail_0021.mat",
+    "sha256": "4eacd528fbe07ee46c3769daabec99cfbc33fcfc77f28d26874951b12dadf52a",
+    "size": [
+      256,
+      128
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\qiuqiu\\trail_0022.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Trail\\trail_0022.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Trail\\trail_0022.mat",
+    "sha256": "505a39f0a0e3600e8c7b7e10c6f8dd7a9c0dbe2cd96628116cb6559e0eab27e3",
+    "size": [
+      256,
+      128
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\qiuqiu\\trail_0053.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Trail\\trail_0053.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Trail\\trail_0053.mat",
+    "sha256": "357b3a5288ca1d018ccc0fd3cb6d1526e80c9ebd95b64fd30a71f7fb44fecad4",
+    "size": [
+      512,
+      128
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\qiuqiu\\trail_0068.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Trail\\trail_0068.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Trail\\trail_0068.mat",
+    "sha256": "9a12eec21f8d5ea1723e37f53febdf089452ff68b38e3210c25a91e96d973dfc",
+    "size": [
+      256,
+      512
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\Ver1\\qiuqiu\\fire_0019.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Fire\\fire_0019.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Fire\\fire_0019.mat",
+    "sha256": "de8cc7c6c1ccfa7421e099cac2c7a7a2c936d161f8195c0548fa174619f911fc",
+    "size": [
+      256,
+      256
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\Ver1\\qiuqiu\\fire_0020.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Fire\\fire_0020.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Fire\\fire_0020.mat",
+    "sha256": "30287c7093315a1b255eb72a840aece01d2ddc42f555dc87477e3f98058a17a2",
+    "size": [
+      256,
+      256
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\Ver1\\qiuqiu\\fire_0091.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Fire\\fire_0091.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Fire\\fire_0091.mat",
+    "sha256": "8e241a2c79bcb4059dc6027ea291426cfa4152e54e90f4412b62d6957e637dbd",
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\Ver1\\qiuqiu\\glow_0000.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Glow\\glow_0000.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Glow\\glow_0000.mat",
+    "sha256": "80a33502135662e68cd2eaea2d83c1b72f1c6f87f311a0ec7df1617508595e22",
+    "size": [
+      64,
+      64
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\Ver1\\qiuqiu\\smoke_0083.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Smoke\\smoke_0083.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Smoke\\smoke_0083.mat",
+    "sha256": "d33a04e0ab4ffb539010849609bc5ffbc43d0280524aff4834c14f7103f090ad",
+    "size": [
+      256,
+      256
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\Ver1\\qiuqiu\\smoke_0153.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Smoke\\smoke_0153.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Smoke\\smoke_0153.mat",
+    "sha256": "1024ab073c005b36bea59345aac23d2e2b1a7018c4eb8b9b7450f5df2cbf5b70",
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\Ver1\\qiuqiu\\smoke_0159.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Smoke\\smoke_0159.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Smoke\\smoke_0159.mat",
+    "sha256": "e6593e29fa389517605dce051ccb731a0c0392e83cef397d4ed8ab710d0e7895",
+    "size": [
+      1024,
+      1024
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\Ver1\\qiuqiu\\smoke_0175.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Smoke\\smoke_0175.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Smoke\\smoke_0175.mat",
+    "sha256": "c275287761bb1d1719ba804e195c5e007f01e37a93f45fe132e864cb33cbf5ab",
+    "size": [
+      2048,
+      2048
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\Ver1\\qiuqiu\\smoke_0177.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Smoke\\smoke_0177.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Smoke\\smoke_0177.mat",
+    "sha256": "2c3522f60ca5ff1383b3b685c244053e77ea4b79530fe5413570cb8061d838fb",
+    "size": [
+      2048,
+      2048
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\Ver1\\qiuqiu\\turbulence_0010.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Turbulence\\turbulence_0010.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Turbulence\\turbulence_0010.mat",
+    "sha256": "8391b610157f3a23917395a960ce2b253b43dcad298a4b49f40038e6cdda238d",
+    "size": [
+      256,
+      256
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\Ver2\\qiuqiu\\blast_0008.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Blast\\blast_0008.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Blast\\blast_0008.mat",
+    "sha256": "94f6fc71186fd90a53b09e69edb64fa3b87412785cc18a6c4021dc8d22c8ef8b",
+    "size": [
+      128,
+      128
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\Ver2\\qiuqiu\\blast_0014.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Blast\\blast_0014.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Blast\\blast_0014.mat",
+    "sha256": "f82bc1cb25c87c4ce745ff6263936d984d7557aeec6e5d4f76adf7355bffc4f7",
+    "size": [
+      128,
+      256
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\Ver2\\qiuqiu\\blast_0020.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Blast\\blast_0020.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Blast\\blast_0020.mat",
+    "sha256": "918006ccb7b5dbbda424e3ef756f6c6839873cc4943835027e1d0bf013091b33",
+    "size": [
+      128,
+      256
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\Ver2\\qiuqiu\\blast_0046.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Blast\\blast_0046.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Blast\\blast_0046.mat",
+    "sha256": "6a1390438b508bc4f8ba83778b20f7398bd28c3c05c6237f728ad3d562018ed5",
+    "size": [
+      256,
+      256
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\Ver2\\qiuqiu\\blast_0067.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Blast\\blast_0067.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Blast\\blast_0067.mat",
+    "sha256": "05ecc9b8ec5cc214d0644311e1c74e9ca4b6e884543d541dbef319bffd47f2b2",
+    "size": [
+      512,
+      512
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\Ver2\\qiuqiu\\fire_0021.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Fire\\fire_0021.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Fire\\fire_0021.mat",
+    "sha256": "b45507cde6be148ffe0543f2283b6d55bb86ba60b35c597a4636d73430cc98eb",
+    "size": [
+      256,
+      256
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\Ver2\\qiuqiu\\Particle_Gradient_01_X_Edgemask_01.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Particle\\Particle_Gradient_01_X_Edgemask_01.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Particle\\Particle_Gradient_01_X_Edgemask_01.mat",
+    "sha256": "ecd8d9cd7003017386b87e9754f00c77b2154e95a474664388261aeb7c71aafc",
+    "size": [
+      128,
+      128
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\Ver2\\qiuqiu\\Particle_Lava02.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Particle\\Particle_Lava02.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Particle\\Particle_Lava02.mat",
+    "sha256": "ff4ef4c0d3211a2a1fd3d1e336604900015ee69d805f27e32fcb5a97723c6ce4",
+    "size": [
+      256,
+      256
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\Ver2\\qiuqiu\\ring_0017.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Ring\\ring_0017.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Ring\\ring_0017.mat",
+    "sha256": "63ac635c0859648322c34af9b42fb4261f79e36a38417230fe3a353761f7022c",
+    "size": [
+      128,
+      128
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\Ver2\\qiuqiu\\ring_0053.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Ring\\ring_0053.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Ring\\ring_0053.mat",
+    "sha256": "de687ec9ae6cdc0a28098340d4a96123be204a265435605466733b7a63a54362",
+    "size": [
+      256,
+      256
+    ]
+  },
+  {
+    "source": "F:\\chiyu\\BubShoot\\Assets\\Effect\\Ver2\\qiuqiu\\trail_0002.png",
+    "texture": "Assets\\ImportedVFX\\FDrive\\Textures\\Trail\\trail_0002.png",
+    "material": "Assets\\ImportedVFX\\FDrive\\Materials\\Trail\\trail_0002.mat",
+    "sha256": "169920f79b876e31d14dea4a79f8e0b7b3b417e42eacff5fc57fa8b139c6d5e1",
+    "size": [
+      64,
+      128
+    ]
+  }
+]

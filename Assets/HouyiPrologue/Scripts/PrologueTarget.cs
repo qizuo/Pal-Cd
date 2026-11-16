@@ -14,6 +14,11 @@ namespace Houyi.NineSuns
         Renderer[] surfaces;
         Vector3 initialScale;
         void Awake() { home = transform.position; initialScale = transform.localScale; surfaces = GetComponentsInChildren<Renderer>(); }
+        public void RestoreDefeated()
+        {
+            defeated = true; health = 0; transform.localScale = Vector3.zero;
+            foreach (var c in GetComponentsInChildren<Collider>()) c.enabled = false;
+        }
         public void OnArrowHit(float charge)
         {
             if (defeated || !story || !story.IsTargetActive(kind)) return;
