@@ -1,0 +1,2 @@
+PASS: chapter/ring regression; attack interrupts dodge/hit; dodge interrupts attack/hit; no self interruption; failed dodge preserves attack; dodge cooldown 0.5 seconds; stamina sprint/dodge costs, delay/recovery/cap/exhaustion and insufficient-stamina action preservation.
+PASS: independent chapter slots, backup recovery, legacy migration, isolated chapter reset, chapter selection resumes saved progress.
